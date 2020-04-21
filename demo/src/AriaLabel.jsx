@@ -8,7 +8,8 @@ export default class BasicExample extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(checked) {
+  handleChange(checked,data) {
+    console.log("data",data);
     this.setState({ checked });
   }
 
@@ -24,6 +25,7 @@ export default class BasicExample extends Component {
           className="react-switch"
           onChange={this.handleChange}
           checked={this.state.checked}
+          data={"la data aquii"}
           aria-label="super secret label that is not visible"
         />
         <pre>

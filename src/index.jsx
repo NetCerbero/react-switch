@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   checkedIcon as defaultCheckedIcon,
-  uncheckedIcon as defaultUncheckedIcon
+  uncheckedIcon as defaultUncheckedIcon,
 } from "./icons.jsx";
 import getBackgroundColor from "./getBackgroundColor";
 import hexColorPropType from "./hexColorPropType";
@@ -18,7 +18,7 @@ class ReactSwitch extends Component {
     );
     this.$uncheckedPos = Math.max(0, (height - this.$handleDiameter) / 2);
     this.state = {
-      $pos: checked ? this.$checkedPos : this.$uncheckedPos
+      $pos: checked ? this.$checkedPos : this.$uncheckedPos,
     };
     this.$lastDragAt = 0;
     this.$lastKeyUpAt = 0;
@@ -53,7 +53,7 @@ class ReactSwitch extends Component {
     this.setState({
       $startX: clientX,
       $hasOutline: true,
-      $dragStartingTime: Date.now()
+      $dragStartingTime: Date.now(),
     });
   }
 
@@ -177,8 +177,8 @@ class ReactSwitch extends Component {
   }
 
   $onChange(event) {
-    const { checked, onChange, id } = this.props;
-    onChange(!checked, event, id);
+    const { checked, onChange, id, data } = this.props;
+    onChange(!checked, data, event, id);
   }
 
   render() {
@@ -216,7 +216,7 @@ class ReactSwitch extends Component {
       WebkitUserSelect: "none",
       MozUserSelect: "none",
       msUserSelect: "none",
-      userSelect: "none"
+      userSelect: "none",
     };
 
     const backgroundStyle = {
@@ -235,7 +235,7 @@ class ReactSwitch extends Component {
       cursor: disabled ? "default" : "pointer",
       WebkitTransition: $isDragging ? null : "background 0.25s",
       MozTransition: $isDragging ? null : "background 0.25s",
-      transition: $isDragging ? null : "background 0.25s"
+      transition: $isDragging ? null : "background 0.25s",
     };
 
     const checkedIconStyle = {
@@ -250,7 +250,7 @@ class ReactSwitch extends Component {
       pointerEvents: "none",
       WebkitTransition: $isDragging ? null : "opacity 0.25s",
       MozTransition: $isDragging ? null : "opacity 0.25s",
-      transition: $isDragging ? null : "opacity 0.25s"
+      transition: $isDragging ? null : "opacity 0.25s",
     };
 
     const uncheckedIconStyle = {
@@ -268,7 +268,7 @@ class ReactSwitch extends Component {
       pointerEvents: "none",
       WebkitTransition: $isDragging ? null : "opacity 0.25s",
       MozTransition: $isDragging ? null : "opacity 0.25s",
-      transition: $isDragging ? null : "opacity 0.25s"
+      transition: $isDragging ? null : "opacity 0.25s",
     };
 
     const handleStyle = {
@@ -298,7 +298,7 @@ class ReactSwitch extends Component {
         : "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
       transition: $isDragging
         ? null
-        : "background-color 0.25s, transform 0.25s, box-shadow 0.15s"
+        : "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
     };
 
     const inputStyle = {
@@ -309,7 +309,7 @@ class ReactSwitch extends Component {
       overflow: "hidden",
       padding: 0,
       position: "absolute",
-      width: 1
+      width: 1,
     };
 
     return (
@@ -318,7 +318,7 @@ class ReactSwitch extends Component {
           className="react-switch-bg"
           style={backgroundStyle}
           onClick={disabled ? null : this.$onClick}
-          onMouseDown={e => e.preventDefault()}
+          onMouseDown={(e) => e.preventDefault()}
         >
           {checkedIcon && <div style={checkedIconStyle}>{checkedIcon}</div>}
           {uncheckedIcon && (
@@ -328,7 +328,7 @@ class ReactSwitch extends Component {
         <div
           className="react-switch-handle"
           style={handleStyle}
-          onClick={e => e.preventDefault()}
+          onClick={(e) => e.preventDefault()}
           onMouseDown={disabled ? null : this.$onMouseDown}
           onTouchStart={disabled ? null : this.$onTouchStart}
           onTouchMove={disabled ? null : this.$onTouchMove}
@@ -354,6 +354,7 @@ class ReactSwitch extends Component {
 }
 ReactSwitch.propTypes = {
   checked: PropTypes.bool.isRequired,
+  data: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   offColor: hexColorPropType,
@@ -368,7 +369,7 @@ ReactSwitch.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   id: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 ReactSwitch.defaultProps = {
@@ -382,7 +383,7 @@ ReactSwitch.defaultProps = {
   boxShadow: null,
   activeBoxShadow: "0 0 2px 3px #3bf",
   height: 28,
-  width: 56
+  width: 56,
 };
 
 export default ReactSwitch;
